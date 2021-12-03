@@ -134,10 +134,14 @@ function template(string) {
 	return chunks.join('');
 }
 
+function isTemplateLiteral(object) {
+	return Array.isArray(object) && Array.isArray(object?.raw) && Object.isFrozen(object);
+}
+
 function chalkTemplate(firstString, ...arguments_) {
-	if (!Array.isArray(firstString) || !Array.isArray(firstString.raw)) {
+	if (!isTemplateLiteral(firstString)) {
 		// If chalkTemplate() was called by itself or with a string
-		throw new TypeError('A tagged template literal must be provided');
+		return template(firstString, ...arguments_);
 	}
 
 	const parts = [firstString.raw[0]];

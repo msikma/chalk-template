@@ -5,10 +5,13 @@ const chalkTemplate = require('../index.js');
 
 test('return a regular string for a literal with no templates', t => {
 	t.is(chalkTemplate`hello`, 'hello');
+	t.is(chalkTemplate('hello'), 'hello');
 });
 
 test('correctly perform template parsing', t => {
 	t.is(chalkTemplate`{bold Hello, {cyan World!} This is a} test. {green Woo!}`,
+		chalk.bold('Hello,', chalk.cyan('World!'), 'This is a') + ' test. ' + chalk.green('Woo!'));
+	t.is(chalkTemplate('{bold Hello, {cyan World!} This is a} test. {green Woo!}'),
 		chalk.bold('Hello,', chalk.cyan('World!'), 'This is a') + ' test. ' + chalk.green('Woo!'));
 });
 
@@ -16,6 +19,8 @@ test('correctly perform template substitutions', t => {
 	const name = 'Sindre';
 	const exclamation = 'Neat';
 	t.is(chalkTemplate`{bold Hello, {cyan.inverse ${name}!} This is a} test. {green ${exclamation}!}`,
+		chalk.bold('Hello,', chalk.cyan.inverse(name + '!'), 'This is a') + ' test. ' + chalk.green(exclamation + '!'));
+	t.is(chalkTemplate(`{bold Hello, {cyan.inverse ${name}!} This is a} test. {green ${exclamation}!}`),
 		chalk.bold('Hello,', chalk.cyan.inverse(name + '!'), 'This is a') + ' test. ' + chalk.green(exclamation + '!'));
 });
 
