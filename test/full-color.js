@@ -1,5 +1,6 @@
-import test from 'ava';
-import chalkTemplate from '../index.js';
+/* eslint-disable unicorn/prefer-module */
+const test = require('ava');
+const chalkTemplate = require('../index.js');
 
 test('correctly parse and evaluate color-convert functions', t => {
 	t.is(chalkTemplate`{bold.rgb(144,10,178).inverse Hello, {~inverse there!}}`,

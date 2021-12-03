@@ -1,4 +1,5 @@
-import chalk from 'chalk';
+/* eslint-disable unicorn/prefer-module */
+const chalk = require('chalk');
 
 // eslint-disable-next-line unicorn/better-regex
 const TEMPLATE_REGEX = /(?:\\(u(?:[a-f\d]{4}|{[a-f\d]{1,6}})|x[a-f\d]{2}|.))|(?:{(~)?(\w+(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))?)*)(?:[ \t]|(?=\r?\n)))|(})|((?:.|[\r\n\f])+?)/gi;
@@ -133,7 +134,7 @@ function template(string) {
 	return chunks.join('');
 }
 
-export default function chalkTemplate(firstString, ...arguments_) {
+function chalkTemplate(firstString, ...arguments_) {
 	if (!Array.isArray(firstString) || !Array.isArray(firstString.raw)) {
 		// If chalkTemplate() was called by itself or with a string
 		throw new TypeError('A tagged template literal must be provided');
@@ -150,3 +151,5 @@ export default function chalkTemplate(firstString, ...arguments_) {
 
 	return template(parts.join(''));
 }
+
+module.exports = chalkTemplate;

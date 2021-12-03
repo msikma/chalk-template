@@ -1,6 +1,7 @@
-import test from 'ava';
-import chalk from 'chalk';
-import chalkTemplate from '../index.js';
+/* eslint-disable unicorn/prefer-module */
+const test = require('ava');
+const chalk = require('chalk');
+const chalkTemplate = require('../index.js');
 
 test('return a regular string for a literal with no templates', t => {
 	t.is(chalkTemplate`hello`, 'hello');

@@ -3,9 +3,9 @@
 	"version": "0.2.0",
 	"description": "Terminal string styling with tagged template literals",
 	"license": "MIT",
-	"repository": "chalk/chalk-template",
+	"repository": "msikma/chalk-template",
 	"funding": "https://github.com/chalk/chalk-template?sponsor=1",
-	"type": "module",
+	"type": "commonjs",
 	"exports": "./index.js",
 	"engines": {
 		"node": ">=12"
